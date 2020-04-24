@@ -2,6 +2,7 @@ from selenium import webdriver
 import time
 from bs4 import BeautifulSoup
 import random
+from playsound import playsound
 
 browser = webdriver.Chrome('./chromedriver')
 
@@ -37,7 +38,7 @@ def check():
     time.sleep(random.randint(3, 7))
 
     if browser.current_url != 'https://www.amazon.com/gp/buy/shipoptionselect/handlers/display.html?hasWorkingJavascript=1':
-        seconds = random.randint(30, 60)
+        seconds = random.randint(60, 120)
 
         print('Page Error!', "Will try again in {} seconds.".format(seconds))
 
@@ -58,6 +59,8 @@ def check():
             result = True
 
     if result:
+        playsound('sound.mp3')
+
         print('Found One!!!')
 
     else:
